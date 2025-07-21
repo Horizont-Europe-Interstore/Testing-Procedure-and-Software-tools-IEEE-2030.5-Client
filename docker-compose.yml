@@ -1,0 +1,7 @@
+version: '3.8'
+services: 
+ ieee2030-client:
+    build: ./IEEE-2030.5-Client
+    container_name: ieee2030-client
+    hostname: ieee2030-client
+    command: ["${COMMAND:-all}"]

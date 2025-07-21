@@ -1,0 +1,20 @@
+version: '3.8'
+services: 
+ ieee2030-client:
+    build: ./IEEE-2030.5-Client
+    container_name: ieee2030-client
+    hostname: ieee2030-client
+    depends_on:
+      - java-backend
+    environment:
+      - NATS_URL=nats://nats-server:4222
+      - SERVER_URL=${SERVER_URL:-https://java-backend:8443/dcap}
+      - RUN_INTERVAL=${RUN_INTERVAL:-300}
+      - RUN_ONCE=${RUN_ONCE:-false}
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    networks:
+      - back-nats
+      - nats-mid
+    command: ["${COMMAND:-all}"]
