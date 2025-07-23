@@ -4,4 +4,16 @@ services:
     build: ./IEEE-2030.5-Client
     container_name: ieee2030-client
     hostname: ieee2030-client
+    environment:
+      - SERVER_URL=${SERVER_URL:-java-backend:8443/dcap}
+      - NATS_URL=nats://nats-server:4222
+    networks:
+      - back-nats
+      - nats-mid
     command: ["${COMMAND:-all}"]
+
+networks:
+  back-nats:
+    external: true
+  nats-mid:
+    external: true
