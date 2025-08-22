@@ -411,11 +411,16 @@ int http_date (char *buffer) {
 }
 
 int http_request (void *conn, char *buffer, const char *uri, int method) {
-  HttpConnection *c = conn; Address addr;
+  HttpConnection *c = conn;
   const char *name = http_methods[method];
   int n = sprintf (buffer, "%s %s %s\r\n", name, uri, c->version);
   n += http_date (buffer+n); n += sprintf (buffer+n, "Host: ");
-  n += write_address_port (buffer+n, net_remote (&addr, c));
+  
+  // Use the stored host address from the SeConnection (cast to access host field)
+  // SeConnection extends HttpConnection, so we can access the host field at offset
+  Address *host_addr = (Address *)((char *)conn + sizeof(HttpConnection));
+  n += write_address_port (buffer+n, host_addr);
+  
   n += sprintf (buffer+n, "\r\nAccept: %s\r\n", c->accept);
   queue_request (conn, method, uri); return n;
 }

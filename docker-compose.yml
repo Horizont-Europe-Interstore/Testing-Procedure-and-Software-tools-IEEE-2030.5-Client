@@ -7,13 +7,5 @@ services:
     environment:
       - SERVER_URL=${SERVER_URL:-java-backend:8443/dcap}
       - NATS_URL=nats://nats-server:4222
-    networks:
-      - back-nats
-      - nats-mid
-    command: ["${COMMAND:-all}"]
-
-networks:
-  back-nats:
-    external: true
-  nats-mid:
-    external: true
+    network_mode: host  
+   
