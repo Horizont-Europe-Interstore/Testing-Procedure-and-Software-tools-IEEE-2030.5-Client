@@ -10,6 +10,10 @@ This document outlines the steps to run the C_Client and the frontend for the pr
 
 ## Steps to Run
 
+0. **Start to run the EPri C client without the docker container**
+    ./build/client_test ens5 pti_dev.x509 ./certs/sat-root.pem https://18.232.7.53:443/dcap 
+
+
 1. **Start Docker Containers for the C_Client, Nats Server and the Subscriber**
     - Run the following command to build and start the Docker containers:
       ```bash
@@ -30,9 +34,11 @@ This document outlines the steps to run the C_Client and the frontend for the pr
       ```
     - Inside the container, run the subscriber script:
       ```bash
-      python subscriber.py
+      python publisher.py
       ```
 
 4. **Access the Frontend**
     - Open a browser and navigate to `http://54.147.91.126:3001`.
     - Use the `/dcap` command to interact with the Java Server on the host machine.
+
+/home/ubuntu/Testing-Procedure-and-Software-tools-IEEE-2030.5-Client/IEEE-2030.5-Client/build/client_test ens5 /home/ubuntu/Testing-Procedure-and-Software-tools-IEEE-2030.5-Client/IEEE-2030.5-Client/pti_dev.x509 /home/ubuntu/Testing-Procedure-and-Software-tools-IEEE-2030.5-Client/IEEE-2030.5-Client/certs/sat-root.pem https://18.232.7.53:443/dcap

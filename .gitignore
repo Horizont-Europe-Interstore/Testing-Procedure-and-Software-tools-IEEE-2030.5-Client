@@ -17,3 +17,9 @@ build/
 *.o
 *.dep
 *.log
+
+# IDE files
+.idea/
+
+# Duplicate directories
+IEEE-2030.5-Client-New/

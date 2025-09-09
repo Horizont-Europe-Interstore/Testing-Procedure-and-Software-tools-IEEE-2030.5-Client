@@ -9,9 +9,7 @@ services:
       - SERVER_URL=${SERVER_URL:-https://java-backend:8443/dcap}
       - RUN_INTERVAL=${RUN_INTERVAL:-300}
       - RUN_ONCE=${RUN_ONCE:-false}
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
+   
     networks:
       - back-nats
       - nats-mid
@@ -34,8 +32,8 @@ services:
    volumes:
      - ./subscriber:/app
    working_dir: /app
-   command: bash -c "pip install nats-py && python subscriber.py"
-   #command: bash -c "pip python subscriber.py"
+   command: bash -c "pip install nats-py && python publisher.py"
+   #command: bash -c "pip python publisher.py"
    networks:
      - nats-mid
 

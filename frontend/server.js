@@ -13,7 +13,7 @@ let nc;
 
 (async () => {
     try {
-        nc = await connect({ servers: "nats://54.147.91.126:4222" });
+        nc = await connect({ servers: "nats://18.232.7.53:4222" });
         console.log("Connected to NATS");
     } catch (err) {
         console.error("Failed to connect to NATS:", err);
@@ -46,5 +46,5 @@ app.get('/run-client', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Server running at http://54.147.91.126:${PORT}`);
+    console.log(`Server running at http://18.232.7.53:${PORT}`);
 });

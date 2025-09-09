@@ -213,7 +213,16 @@ void se_output_init (Output *o, char *buffer, int size, int xml) {
 void print_se_object (void *obj, int type) {
   Output o; char buffer[1024];
   output_init (&o, &se_schema, buffer, 1024);
-  while (output_doc (&o, obj, type)) printf ("%s", buffer);
+//  while (output_doc (&o, obj, type)) printf ("%s", buffer);
+  while (output_doc (&o, obj, type)){
+      FILE *file = fopen("output.txt", "w");
+      if (file != NULL) {
+        fprintf(file, buffer);
+        printf ("%s", buffer);
+        fclose(file);
+        printf("File created and written successfully.\n");
+      }
+  }
 }
 
 #endif
