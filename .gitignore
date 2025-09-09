@@ -1,0 +1,19 @@
+# Zone Identifier files
+*:Zone.Identifier
+
+# Certificates
+*.crt
+*.pem
+*.key
+*.x509
+*.csr
+*.srl
+
+# Node modules
+node_modules/
+
+# Build artifacts
+build/
+*.o
+*.dep
+*.log

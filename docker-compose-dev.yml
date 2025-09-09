@@ -4,8 +4,6 @@ services:
     build: ./IEEE-2030.5-Client
     container_name: ieee2030-client
     hostname: ieee2030-client
-    depends_on:
-      - java-backend
     environment:
       - NATS_URL=nats://nats-server:4222
       - SERVER_URL=${SERVER_URL:-https://java-backend:8443/dcap}
@@ -18,3 +16,29 @@ services:
       - back-nats
       - nats-mid
     command: ["${COMMAND:-all}"]
+
+ nats-server:
+    image: nats
+    container_name: nats-server
+    hostname: nats-server
+    ports:
+      - "4222:4222"
+    networks:
+      - nats-mid
+
+ nats-subscriber:
+   image: python:3.11
+   container_name: nats-subscriber
+   depends_on:
+     - nats-server
+   volumes:
+     - ./subscriber:/app
+   working_dir: /app
+   command: bash -c "pip install nats-py && python subscriber.py"
+   #command: bash -c "pip python subscriber.py"
+   networks:
+     - nats-mid
+
+networks:
+  back-nats:
+  nats-mid:

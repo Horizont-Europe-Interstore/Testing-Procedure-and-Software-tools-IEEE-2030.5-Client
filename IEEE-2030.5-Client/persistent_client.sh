@@ -44,7 +44,14 @@ echo $$ > $PID_FILE
 execute_url() {
   local url="$1"
   echo "[$(date)] Executing URL: $url"
-  /app/build/client_test $INTERFACE $DEVICE_CERT $CA_CERT $url
+  OUTPUT=$(/app/build/client_test $INTERFACE $DEVICE_CERT $CA_CERT $url)
+  echo "$OUTPUT"
+
+  # Sending output to NATS
+#    if [ -n "$OUTPUT" ]; then
+#      python3 /app/send_nats.py "ieee.client.response" "$OUTPUT"
+#    fi
+
   echo "[$(date)] Execution completed with exit code: $?"
 }
 
