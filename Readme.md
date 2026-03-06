@@ -6,7 +6,7 @@ This document outlines the steps to run the C_Client and the frontend for the pr
 - Docker and Docker Compose installed
 - Node.js installed
 - Python installed (for the subscriber)
-- Access to the host machine at `http://54.147.91.126:3001`
+
 
 ## Steps to Run
 
